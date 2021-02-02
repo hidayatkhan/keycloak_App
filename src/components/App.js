@@ -1,22 +1,16 @@
 import Welcome from "./Welcome";
 import Secured from "./Secured";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Navbar from "./Nav";
 function App() {
   return (
-    <BrowserRouter>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Public Component</Link>
-          </li>
-          <li>
-            <Link to="/secured"> Secured Component</Link>
-          </li>
-        </ul>
+    <Router>
+      <Navbar />
+      <Switch>
         <Route exact path="/" component={Welcome} />
-        <Route path="/secured" component={Secured} />
-      </div>
-    </BrowserRouter>
+        <Route path="/Login" component={Secured} />
+      </Switch>
+    </Router>
   );
 }
 
