@@ -1,0 +1,32 @@
+import React, { Component } from "react";
+
+class UserInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      id: "",
+    };
+    this.props.keycloak.loadUserInfo().then((userInfo) => {
+      console.log(userInfo);
+      this.setState({
+        name: userInfo.given_name,
+        email: userInfo.email,
+        id: userInfo.sub,
+      });
+    });
+  }
+
+  render() {
+    return (
+      <div className="UserInfo">
+        <p>Hello, {this.state.name}</p>
+        {/* <p>Email: {this.state.email}</p> */}
+        <p>ID: {this.state.id}</p>
+      </div>
+    );
+  }
+}
+
+export default UserInfo;
